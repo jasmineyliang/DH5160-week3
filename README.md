@@ -38,104 +38,125 @@ All assets and code are under the [MIT License](https://github.com/AmmarAbdelhal
 
 ## Quiz
 
-### Quiz 1: Basic SELECT Query
-**Question:**
-Write a SELECT statement to fetch all columns from the `students` table.
-
-**Answer:**
-```sql
-SELECT * FROM students;
-```
-
-### Quiz 2: SELECT Specific Columns
-**Question:**
-Write a SELECT statement to fetch only the `name` and `age` columns from the `students` table.
+### Quiz 1: Writing a JOIN Query
+**Question:** Write a query to fetch employee names and their corresponding department names using an INNER JOIN. (we have both employee and department table, employee table has employees.name and employees.department, department table has department.name and other infomation)
 
 **Answer:**
 ```sql
 
 ```
 
-### Quiz 3: Basic INSERT Query
-**Question:**
-Write an INSERT statement to add a new student named 'Alice' who is 20 years old to the `students` table.
+### Quiz 2: Writing a JOIN Query with Multiple Tables
+**Question:** Write a query to fetch employee names and project titles by joining the employees, departments, and projects tables.(we have employee, department table and projects; table has employees.name and employees.department, department table has department.name and other infomation, project table has project.department.name)
 
 **Answer:**
 ```sql
 
 ```
 
-### Quiz 4: INSERT Multiple Values
-**Question:**
-Write an INSERT statement to add two students: 'Bob' who is 22 years old and 'Charlie' who is 23 years old to the `students` table.
+### Quiz 3: Writing a Subquery
+**Question:** Write a query to fetch the names of employees who are in the 'Sales' department using a subquery.
 
 **Answer:**
 ```sql
 
 ```
 
-### Quiz 5: Basic UPDATE Query
-**Question:**
-Write an UPDATE statement to change the age of the student named 'Alice' to 21.
+### Quiz 4: Writing a Subquery for Filtering
+**Question:** Write a query to fetch employee names who belong to the 'Marketing' department using a subquery.
+
+**Answer:**
+```sql
+
+
+```
+
+### Quiz 5: Basic Query Optimization (Multiple Choice)
+**Question:** What is the best optimization technique for the following query?
+```sql
+SELECT *
+FROM employees
+WHERE department_id = 5
+ORDER BY name;
+```
+- A) Use a LIMIT clause
+- B) Create an index on the `department_id` column
+- C) Use a different database
+- D) Select fewer columns
+
+
+### Quiz 6: Writing a JOIN Query with a Condition
+**Question:** Write a query to fetch employee names and department names for departments located in 'New York' using a JOIN.
+
+**Answer:**
+```sql
+
+
+```
+
+### Quiz 7: Writing a Subquery with Aggregation
+**Question:** Write a query to fetch employee names and salaries where the salary is greater than the average salary across all employees.
 
 **Answer:**
 ```sql
 
 ```
 
-### Quiz 6: UPDATE Multiple Columns
-**Question:**
-Write an UPDATE statement to change the `age` of 'Bob' to 23 and set his `grade` to 'A'.
+### Quiz 8: Writing a Subquery for Comparison
+**Question:** Write a query to fetch employee names and salaries where the salary is greater than the average salary of their department.
 
 **Answer:**
 ```sql
 
+
 ```
 
-### Quiz 7: Basic DELETE Query
-**Question:**
-Write a DELETE statement to remove the student named 'Charlie' from the `students` table.
+### Quiz 9: Query Optimization (Multiple Choice)
+**Question:** What is the best optimization technique for the following query?
+```sql
+SELECT name
+FROM employees
+WHERE department_id IN (
+    SELECT id
+    FROM departments
+    WHERE location = 'San Francisco'
+);
+```
+- A) Use a JOIN instead of a subquery
+- B) Create an index on the `departments.location` column
+- C) Use a DISTINCT clause
+- D) Increase the server's memory
+
+
+
+### Quiz 10: Writing a LEFT JOIN Query
+**Question:** Write a query to fetch employee names and department names, including employees without a department, using a LEFT JOIN.
 
 **Answer:**
 ```sql
 
+
 ```
 
-### Quiz 8: DELETE All Records
-**Question:**
-Write a DELETE statement to remove all students who are older than 22 from the `students` table.
-
-**Answer:**
+### Quiz 11: Query Optimization (Multiple Choice)
+**Question:** What is the best optimization technique for the following query?
 ```sql
-
+SELECT id, name
+FROM employees
+WHERE name LIKE 'John%';
 ```
+- A) Create an index on the `name` column
+- B) Use a FULLTEXT index on the `name` column
+- C) Increase the server's CPU
+- D) Use an ORDER BY clause
 
-### Quiz 9: SELECT with WHERE Clause
-**Question:**
-Write a SELECT statement to fetch all columns from the `students` table where the age is greater than 20.
 
-**Answer:**
-```sql
 
-```
 
-### Quiz 10: SELECT with ORDER BY
-**Question:**
-Write a SELECT statement to fetch all columns from the `students` table and order the results by the `name` column in ascending order.
 
-**Answer:**
-```sql
 
-```
 
-### Quiz 11: SELECT with Simple WHERE Conditions
-**Question:**
-Write a SELECT statement to fetch the `name` and `grade` of students from the `students` table where the grade is 'B'.
 
-**Answer:**
-```sql
-
-```
 
 
 ## Assignment 
