@@ -161,144 +161,229 @@ WHERE name LIKE 'John%';
 
 ## Assignment 
 
-Patient Records Management
-Description:
-Create and manage a database for patient records.
+### Assignment Question: Problem Solving with Fitness Data
 
-Tasks:
+**Assignment:** Write a SQL script to analyze a fitness tracking database to answer specific questions about user activities, exercises, and performance. Use advanced SQL commands including JOINs, subqueries, and optimization techniques to complete this assignment.
 
-Create Tables:
+#### Database Schema:
 
-Create a table named patients with columns: id (INT, Primary Key, Auto Increment), name (VARCHAR(50)), age (INT), gender (VARCHAR(10)).
-Create a table named visits with columns: id (INT, Primary Key, Auto Increment), patient_id (INT, Foreign Key referencing patients(id)), visit_date (DATE), reason (VARCHAR(255)).
+1. **users**
+   - `id` (INT, Primary Key)
+   - `name` (VARCHAR)
+   - `age` (INT)
+   - `gender` (VARCHAR)
 
-```sql
+2. **activities**
+   - `id` (INT, Primary Key)
+   - `user_id` (INT, Foreign Key)
+   - `activity_date` (DATE)
+   - `activity_type` (VARCHAR)
+   - `duration_minutes` (INT)
+   - `calories_burned` (INT)
+
+3. **workouts**
+   - `id` (INT, Primary Key)
+   - `user_id` (INT, Foreign Key)
+   - `workout_date` (DATE)
+   - `workout_type` (VARCHAR)
+   - `intensity` (VARCHAR)
+
+#### Problem Statement:
+
+You are tasked with writing a SQL script to answer the following questions:
+
+1. **User Demographics:** 
+   Write a query to list the total number of users, the average age of users, and the distribution of users by gender.
+
+2. **Activity Summary:**
+   Write a query to list each user along with the total number of activities they have logged and the total calories they have burned.
+
+3. **Popular Activities:**
+   Write a query to list the most common activity types, including the activity type and the number of times each activity has been performed.
+
+4. **Workout Summary:**
+   Write a query to list each user along with the total number of workouts they have logged and the average intensity of their workouts.
+
+5. **Top Performers:**
+   Write a query to find the top 3 users who have burned the most calories in total. List the user name and the total calories burned.
+
+6. **Optimization:**
+   Identify at least one index that could be created to optimize the queries you have written. Explain why this index would help.
+
+#### Deliverables:
+
+- A SQL script file (`fitness_data_analysis.sql`) containing the queries for each of the questions above.
+- A brief document (`index_optimization.txt`) explaining the index you chose to optimize your queries and why.
+
+### Example Solution:
+
+Here is a starting point for some of the queries:
+
+1. **User Demographics:**
+   ```sql
+   SELECT 
+       COUNT(*) AS total_users,
+       AVG(age) AS average_age,
+       gender,
+       COUNT(*) * 100.0 / (SELECT COUNT(*) FROM users) AS gender_distribution
+   FROM users
+   GROUP BY gender;
+   ```
+
+2. **Activity Summary:**
+   ```sql
+
+   
+   ```
+
+3. **Popular Activities:**
+   ```sql
+
+   
+   ```
+
+4. **Workout Summary:**
+   ```sql
+
+   
+   ```
+
+5. **Top Performers:**
+   ```sql
+
+   
+   ```
+
+### index_optimization.txt
+```text
 
 ```
 
-Insert Data:
+### Mini Project: Comprehensive Health Data Analysis
 
-```sql
+**Project:** Develop a comprehensive health data analysis system using an extensive health database. The project will involve more complex queries, data processing, and report generation.
 
-```
-
-Insert at least five patients into the patients table.
-Insert visit records for each patient.
-Queries:
-
-- Write a query to fetch all columns from the patients table.
-```sql
-
-```
-- Write a query to fetch all visit records for a patient with a given name.
-```sql
-
-```
-- Write a query to update the reason for a specific visit by visit ID.
-```sql
-
-```
-
-## Project
-### Mini Project: Health Data Management System
-
-**Project Overview:**
-This project involves creating a comprehensive health data management system using SQL. You will design a database schema, populate the database with sample data, and write queries to manage and retrieve data. The project covers creating and managing patient records, medication tracking, and appointment scheduling.
-
-### Part 1: Database Schema Design
-
-**Tables to Create:**
+#### Database Schema:
 
 1. **patients**
-   - `id` (INT, Primary Key, Auto Increment)
-   - `name` (VARCHAR(50))
+   - `id` (INT, Primary Key)
+   - `name` (VARCHAR)
    - `age` (INT)
-   - `gender` (VARCHAR(10))
+   - `gender` (VARCHAR)
+   - `address` (VARCHAR)
+   - `phone_number` (VARCHAR)
 
-2. **visits**
-   - `id` (INT, Primary Key, Auto Increment)
-   - `patient_id` (INT, Foreign Key referencing `patients(id)`)
-   - `visit_date` (DATE)
-   - `reason` (VARCHAR(255))
+2. **doctors**
+   - `id` (INT, Primary Key)
+   - `name` (VARCHAR)
+   - `specialization` (VARCHAR)
+   - `experience_years` (INT)
 
-3. **medications**
-   - `id` (INT, Primary Key, Auto Increment)
-   - `name` (VARCHAR(50))
-   - `dosage` (VARCHAR(50))
-
-4. **prescriptions**
-   - `id` (INT, Primary Key, Auto Increment)
-   - `patient_id` (INT, Foreign Key referencing `patients(id)`)
-   - `medication_id` (INT, Foreign Key referencing `medications(id)`)
-   - `start_date` (DATE)
-   - `end_date` (DATE)
-
-5. **appointments**
-   - `id` (INT, Primary Key, Auto Increment)
-   - `patient_id` (INT, Foreign Key referencing `patients(id)`)
+3. **appointments**
+   - `id` (INT, Primary Key)
+   - `patient_id` (INT, Foreign Key)
+   - `doctor_id` (INT, Foreign Key)
    - `appointment_date` (DATE)
-   - `doctor` (VARCHAR(50))
+   - `reason` (VARCHAR)
 
-### Part 2: Data Insertion
+4. **treatments**
+   - `id` (INT, Primary Key)
+   - `appointment_id` (INT, Foreign Key)
+   - `treatment_date` (DATE)
+   - `treatment_description` (VARCHAR)
 
-**Sample Data to Insert:**
+5. **medications**
+   - `id` (INT, Primary Key)
+   - `treatment_id` (INT, Foreign Key)
+   - `medication_name` (VARCHAR)
+   - `dosage` (VARCHAR)
 
-```sql
--- Patients
-INSERT INTO patients (name, age, gender) VALUES ('John Doe', 30, 'Male');
-INSERT INTO patients (name, age, gender) VALUES ('Jane Smith', 25, 'Female');
-INSERT INTO patients (name, age, gender) VALUES ('Emily Davis', 40, 'Female');
-INSERT INTO patients (name, age, gender) VALUES ('Michael Brown', 50, 'Male');
-INSERT INTO patients (name, age, gender) VALUES ('Sarah Wilson', 35, 'Female');
+6. **invoices**
+   - `id` (INT, Primary Key)
+   - `appointment_id` (INT, Foreign Key)
+   - `amount` (DECIMAL)
+   - `payment_date` (DATE)
+   - `status` (VARCHAR)
 
--- Visits
-INSERT INTO visits (patient_id, visit_date, reason) VALUES (1, '2024-01-10', 'Routine check-up');
-INSERT INTO visits (patient_id, visit_date, reason) VALUES (2, '2024-01-15', 'Flu symptoms');
-INSERT INTO visits (patient_id, visit_date, reason) VALUES (3, '2024-01-20', 'Annual physical');
-INSERT INTO visits (patient_id, visit_date, reason) VALUES (4, '2024-01-25', 'Chest pain');
-INSERT INTO visits (patient_id, visit_date, reason) VALUES (5, '2024-01-30', 'Headache');
+#### Problem Statement:
 
--- Medications
-INSERT INTO medications (name, dosage) VALUES ('Aspirin', '100mg');
-INSERT INTO medications (name, dosage) VALUES ('Ibuprofen', '200mg');
-INSERT INTO medications (name, dosage) VALUES ('Amoxicillin', '500mg');
-INSERT INTO medications (name, dosage) VALUES ('Metformin', '1000mg');
-INSERT INTO medications (name, dosage) VALUES ('Lisinopril', '10mg');
+You are tasked with developing a SQL script to perform comprehensive analysis and reporting on the health database. Your analysis should include the following tasks:
 
--- Prescriptions
-INSERT INTO prescriptions (patient_id, medication_id, start_date, end_date) VALUES (1, 1, '2024-02-01', '2024-02-10');
-INSERT INTO prescriptions (patient_id, medication_id, start_date, end_date) VALUES (2, 2, '2024-02-05', '2024-02-15');
-INSERT INTO prescriptions (patient_id, medication_id, start_date, end_date) VALUES (3, 3, '2024-02-10', '2024-02-20');
-INSERT INTO prescriptions (patient_id, medication_id, start_date, end_date) VALUES (4, 4, '2024-02-15', '2024-02-25');
-INSERT INTO prescriptions (patient_id, medication_id, start_date, end_date) VALUES (5, 5, '2024-02-20', '2024-03-01');
+1. **Patient Overview:**
+   - List all patients with their details and the number of appointments they have had.
 
--- Appointments
-INSERT INTO appointments (patient_id, appointment_date, doctor) VALUES (1, '2024-03-01', 'Dr. Smith');
-INSERT INTO appointments (patient_id, appointment_date, doctor) VALUES (2, '2024-03-05', 'Dr. Johnson');
-INSERT INTO appointments (patient_id, appointment_date, doctor) VALUES (3, '2024-03-10', 'Dr. Lee');
-INSERT INTO appointments (patient_id, appointment_date, doctor) VALUES (4, '2024-03-15', 'Dr. Brown');
-INSERT INTO appointments (patient_id, appointment_date, doctor) VALUES (5, '2024-03-20', 'Dr. Williams');
-```
+2. **Doctor Performance:**
+   - List all doctors with their details and the number of appointments they have handled, including their total years of experience.
 
-### Part 3: SQL Queries
+3. **Appointment Analysis:**
+   - List the total number of appointments each month and identify any seasonal trends.
 
-**List of Queries to Implement (without solutions provided):**
+4. **Treatment and Medication Analysis:**
+   - List the most common treatments and medications prescribed, including the treatment description and medication name with their respective counts.
 
-1. Retrieve all patient records.
-2. Retrieve all visits for a specific patient.
-3. Retrieve all medications.
-4. Retrieve all prescriptions for a specific patient.
-5. Retrieve all appointments for a specific doctor.
-6. Update reason for a specific visit. (you can choose any patient and modify to any reason)
-7. Update dosage for a specific medication.
-8. Update appointment date for a specific appointment.
+5. **Invoice Summary:**
+   - List the total revenue generated each month and the breakdown of paid vs. unpaid invoices.
+
+6. **Advanced Insights:**
+   - Identify patients who have not visited in the last year.
+   - List doctors who have handled the most critical cases (based on appointment reasons).
+
+7. **Optimization:**
+   - Identify at least three indexes that could be created to optimize the queries you have written. Explain why these indexes would help.
+
+#### Deliverables:
+
+- A SQL script file (`comprehensive_health_analysis.sql`) containing the queries for each of the tasks above.
+- A brief document (`index_optimization.txt`) explaining the indexes you chose to optimize your queries and why.
+
+### Example Solution:
+
+Here is a starting point for some of the queries:
+
+1. **Patient Overview:**
+   ```sql
+
+   
+   ```
+
+2. **Doctor Performance:**
+   ```sql
+
+   
+   ```
+
+3. **Appointment Analysis:**
+   ```sql
+
+   
+   ```
+
+4. **Treatment and Medication Analysis:**
+   ```sql
+
+   
+   ```
+
+   ```sql
 
 
+   ```
 
-### Part 4: Additional Tasks (Hard, bonus points)
+5. **Invoice Summary:**
+   ```sql
 
-**Additional SQL Tasks (without solutions provided):**
+   
+   ```
 
-1. List patients with more than one visit.
-2. Find the most prescribed medication.
-3. List patients with upcoming appointments.
+6. **Advanced Insights:**
+   Patients who have not visited in the last year
+
+   ```sql
+
+   
+   ```
+
+   ```sql
+
+   
+   ```
